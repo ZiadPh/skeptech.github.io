@@ -1,8 +1,9 @@
 	
 
       html {
-        height: 900px;
-        width: 500px;
+        height: 100%;
+        width: 100%;
+	zoom: 75%;
       }
 
 		/*html, body {
