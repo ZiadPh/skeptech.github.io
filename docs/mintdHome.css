@@ -3,7 +3,7 @@
       html {
         height: 100%;
         width: 100%;
-	zoom: 75%;
+		zoom: 75%;
       }
 
       body {
@@ -7810,29 +7810,16 @@ position: absolute;
 
 .mintdHome .iconAwesomeShoppingCart {
     position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
       opacity: 1;
       cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
+   	  margin: 0px 0px 0px 0px;
+      padding: 0px 0px 0px 0px;
       fill: rgba(162, 162, 199, 1);
       box-shadow: none;
       width: 46.83px;
-    height: 41.63px;
-    left: 1690.45px;
-    top: 30.33px;
+      height: 41.63px;
+      right: 0px;
+	  top: 0px;
 
 }
 
@@ -7893,4 +7880,5 @@ position: absolute;
     left: 1690.45px;
     top: 30.33px;
 	opacity: 1;
+	background-color: #141419;
 }
