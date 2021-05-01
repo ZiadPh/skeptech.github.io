@@ -240,7 +240,7 @@
 
 #launchButton{
 	padding: 14px 40px;
-	border-radius: 8px;
+	border-radius: 0px;
 	transition-duration: 0.4s;
 	color: white;
 	background-color: black;
