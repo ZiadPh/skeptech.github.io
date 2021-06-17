@@ -315,45 +315,43 @@ span {
 .elflnos {
 	display: flex;
 	height: 500px;
-	justify-content: space-between;
+	align-content: space-between;
 	align-items: center;
 	z-index: -1;
 }
 
 
 .thumbnails {
-
-	margin-left: 5%;
+	width: 30%;
+	margin-left: 3%;
 }
 .img1 {
 	width: 140px;
 	height:140px;
-	background: red;
 	margin:10px;
 }
 
 .img2 {
 	width: 140px;
 	height:140px;
-	background: red;
 	margin: 10px;
 }
 
 .img3 {
 	width: 140px;
 	height:140px;
-	background: red;
 	margin: 10px;
 }
 
 .main-pic {
-	width:30%;
-	margin-left: 2%;
+	width: 40%;
+	margin-left: 5%;
+	display: flex;
 }
 
 .p-description {
-	width: 50%;
-	margin-right: 15%;
+	width: 33%;
+	margin-left: 5%;
 }
 
 .main-img {
@@ -382,6 +380,6 @@ span {
 }
 
 .pMaterial {
-		color: #A2A2C7;
-	font-size: 150%;
+	color: #A2A2C7;
+	font-size: 180%;
 }
