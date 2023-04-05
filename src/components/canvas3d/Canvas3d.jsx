@@ -1,22 +1,11 @@
-import { Canvas, extend, useLoader } from '@react-three/fiber'
-import { OrbitControls, shaderMaterial } from '@react-three/drei';
+import {useRef, useEffect} from 'react'
+import { Canvas, extend, useLoader, useFrame } from '@react-three/fiber'
+import { OrbitControls, shaderMaterial, ScrollControls, useScroll } from '@react-three/drei';
 import * as THREE from 'three'
 import { EffectComposer, ChromaticAberration, Bloom, Noise, Vignette, } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-const PointShader = shaderMaterial(
-  {},
-  `
-    void main() {
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  `
-    void main() {
-      gl_FragColor = vec4(1.0,1.0,0.0,1.0);
-    }
-  `
-)
+
 const number = 662742;
 
 const randoms = new Float32Array (number /3);
@@ -32,9 +21,9 @@ const material = new THREE.ShaderMaterial( {
 	uniforms: {
 
 		time: 0,
-    uColor1: {value: new THREE.Color(0x612574)},
-    uColor2: {value: new THREE.Color(0x293583)},
-    uColor3: {value: new THREE.Color(0x1954ec)},
+    uColor1: {value: new THREE.Color(0x0ea7b5)},
+    uColor2: {value: new THREE.Color(0xffbe4f)},
+    uColor3: {value: new THREE.Color(0x0c457d)},
 
 	},
 
@@ -47,7 +36,7 @@ const material = new THREE.ShaderMaterial( {
       vUv = uv;
       colorR = cRandoms;
       vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      gl_PointSize = (70. * randoms ) * (1. / - mvPosition.z);
+      gl_PointSize = (70. * randoms + 10.0) * (1. / - mvPosition.z) ;
       gl_Position = projectionMatrix * mvPosition;
   }`,
 
@@ -82,65 +71,81 @@ const material = new THREE.ShaderMaterial( {
   `
 
   });
-extend({PointShader})
 
+
+//Model loading Function
 function Model() {
 
   const gltf = useLoader(GLTFLoader, '/dna-03.glb')
-  console.log(gltf)
  
-  gltf.materials.map = PointShader
+  gltf.materials.map = material
   gltf.scene.children[0].geometry.setAttribute('randoms', new THREE.BufferAttribute(randoms,1))
   gltf.scene.children[0].geometry.setAttribute('cRandoms', new THREE.BufferAttribute(colorRandoms,1))
-  gltf.scene.children[1].geometry.setAttribute('randoms', new THREE.BufferAttribute(randoms,1))
-  gltf.scene.children[1].geometry.setAttribute('cRandoms', new THREE.BufferAttribute(colorRandoms,1))
   material.transparent = true;
   material.depthTest = false;
   material.depthWrite = false;
   material.blending = THREE.AdditiveBlending;
   const mesh = new THREE.Points(gltf.scene.children[0].geometry, material)
-  const mesh2 = new THREE.Points(gltf.scene.children[1].geometry, material)
-  console.log(gltf.scene.children[0].geometry.attributes.position.array.length)
+  const wave = useRef()
+  const data = useScroll()
+
+
+  useFrame((state, delta) => {
+
+    // Will be 0 when the scrollbar is at the starting position,
+    // then increase to 1 until 1 / 3 of the scroll distance is reached
+    const a = data.range(0, 1)
+    wave.current.rotation.x = THREE.MathUtils.damp(wave.current.rotation.x, (-Math.PI / 1.45) * a, 4, delta)
+    wave.current.position.x = THREE.MathUtils.damp(wave.current.position.x, (-Math.PI / 1.45) * a, 4, delta)
+    wave.current.position.z = THREE.MathUtils.damp(wave.current.position.z, (-Math.PI / 1.45) * 0.5 * a, 4, delta)
+  })
+
+
+
 
  
-
   return (<>
-  <primitive object={mesh} position={[0,0,0]}>  </primitive>
-  <primitive object={mesh2} position={[0,0,0]} rotation={[0,10,0]}>  </primitive></>
-  )
-
+    <primitive ref={wave} object={mesh} position={[0,0,0]} rotation={[0,-0.57,0]} /> 
+    </>)
 }
-function Canvas3d() {
+
+
+
+
+//Render Function
+function ThreeCanvas() {
 
   
   return ( 
-    <div className='canvas3d'>
+    <div className='ThreeCanvas'>
       <Canvas
         camera={{
           fov: 75,
           aspect: 2,
           near: 0.1,
           far: 1000,
-          position: [12,0,12],
+          position: [0,0,4],
           rotation: [0,0,0]
         }}
       > 
       <EffectComposer>
         <Bloom luminanceThreshold={0.6} luminanceSmoothing={0.2} height={900} />
-        {/* <Noise opacity={0.06} /> */}
+        <Noise opacity={0.06} />
         <ChromaticAberration
     blendFunction={BlendFunction.NORMAL} // blend mode
-    offset={[0.001, 0.001]} // color offset
+    offset={[0.0025, 0.001]} // color offset
   />
         {/* <Vignette eskil={false} offset={0.6} darkness={0.9} /> */}
       </EffectComposer>
         <color args={['#181b1f']} attach={'background'}/>              
-         <Model />
+         <ScrollControls pages={5} damping={0.1}>
+          <Model />
+         </ScrollControls>
          
-      
+        {/* <OrbitControls/> */}
       </Canvas>
     </div>
   );
 }
 
-export default Canvas3d;
+export default ThreeCanvas;
