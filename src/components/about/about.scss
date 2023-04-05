@@ -1,0 +1,23 @@
+.about-wrapper{
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .about-container{
+        width: 60%;
+        .about-title{
+            font-size:clamp(30px, 10vw, 7vw);
+            letter-spacing:1px;
+
+        }
+        .about-description{
+            font-size:clamp(12px, 1.5vw, 7vw);
+            margin-top: 2rem;
+            line-height: 35px;
+            letter-spacing: .5px;
+            margin-left: 1rem;
+            width: 70%;
+
+        }
+    }
+}

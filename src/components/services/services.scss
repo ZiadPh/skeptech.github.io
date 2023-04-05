@@ -1,0 +1,30 @@
+.services-wrapper{
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .services-container{
+        width: 60%;
+        .services-title{
+            font-size:clamp(30px, 10vw, 7vw);
+            letter-spacing:3px;
+
+        }
+        .service-title{
+            font-size:clamp(12px, 1.7vw, 7vw);
+            margin-left: 1rem;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+        .services-description{
+            font-size:clamp(12px, 1.5vw, 7vw);
+            margin-top: 1rem;
+            line-height: 35px;
+            letter-spacing: .5px;
+            margin-left: 1rem;
+            width: 70%;
+            font-weight: 100;
+
+        }
+    }
+}

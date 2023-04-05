@@ -1,0 +1,115 @@
+
+.projects-wrapper{
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    // position: relative;
+    .project-container{
+        
+        .projects-title{
+            margin-left: 5rem;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: .5;
+            margin-bottom: 2.5rem;
+            .projects-number{
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+.project{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top:3rem;
+   
+    ul{
+        li{
+            margin-left: calc(6vw - 20px);
+            opacity: .5;
+            transition: .5s ease;
+            .project-name{
+               display: flex;
+                font-size: clamp(20px, 3vw, 5vw);
+                letter-spacing: 3px;
+                font-weight: 200;
+            }
+            .project-number{
+                align-self: flex-start;
+                font-size: 12px;
+                margin-right: 20px;
+                margin-top: 6px;
+                               
+            }
+            @for $i from 1 through 4 {
+                .dash:nth-child(#{$i}){
+                    width: 27px;
+                    height: 1.2px;
+                    background-color: $primary-color;
+                    content: " ";
+                    position: absolute;
+          
+                }
+            }
+        }
+    }
+
+    
+    img{
+        width: 35vw;
+        display: block;
+        position: absolute;
+        opacity: 0;
+        right: calc(6vw - 20px);
+        top: 25vh;
+        transition: opacity 0.5s ease;
+    }
+    .projects-description{
+
+        width: 30vw;
+        display: block;
+        position: fixed;
+        opacity: 0;
+        text-align: right;
+        font-size: 14px;
+        right: 2rem;
+        bottom:2vh;
+        transition: opacity 0.5s ease;
+        transition-delay: 0.1s;
+        
+        .project-title{
+            font-size:12px;
+            margin-bottom:10px;
+            letter-spacing: 2.5px;
+       
+        }
+        .project-desc{
+            letter-spacing: .5px;
+        }
+    }
+    &:hover{
+        img{
+            opacity: 1;
+
+        }
+        .projects-description{
+            opacity: 1;
+        }
+        li{
+            opacity: 1;
+        }
+        
+    }
+}
+
+.show{
+    opacity: 1;
+}
+.project-name{
+ opacity: 0;
+ transform: translateY(40px);
+}
