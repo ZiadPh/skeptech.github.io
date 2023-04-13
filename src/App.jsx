@@ -11,15 +11,51 @@ import {useEffect, useRef, useState} from 'react'
 import Services3d from './components/services3d/services3d'
 import ThreeCanvas from './components/canvas3d/Canvas3d'
 import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
+import { extend } from '@react-three/fiber'
+
+
 
 
 
 //Render Function
 function App() {
+
+  //Scroll Progress Tracking
+  const [scrollTop, setScrollTop] = useState(0);
+  const onScroll = () => {
+    // This will calculate how many pixels the page is vertically
+    const winScroll = document.documentElement.scrollTop;
+    // This is responsible for subtracticing the total height of the page - where the users page is scrolled to
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    // This will calculate the final total of the percentage of how much the user has scrolled.
+    const scrolled = (winScroll / height);
+
+    setScrollTop(scrolled);
+  };
+
+
+  
+  useEffect(() => {
+    // Fires when the document view has been scrolled
+    window.addEventListener("scroll", onScroll);
+
+    // 
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+
+  //LocomotiveScroll
   const id = useRef(null)
   const containerRef = useRef(null)
+
+  //Preloader
   const [preloader, setPreloader] = useState(true)
   const [timer,setTimer] = useState(3)
+
+
  
   return (
     <> 
@@ -30,6 +66,8 @@ function App() {
         
         <>
         <LocomotiveScrollProvider
+
+        
         options={
           {
             smooth: true,
@@ -43,17 +81,18 @@ function App() {
             //  For exemple, on Next.js you would want to watch properties like `router.asPath` (you may want to add more criterias if the instance should be update on locations with query parameters)
           ]
         }
-        containerRef={containerRef}
+       
       >
         <main data-scroll-container ref={containerRef}>
-          <Nav/>
-          <Hero/>
-          <Projects/>
-          <About/>
-          <Services/>
-          <Services3d/>
-          <Contact/>
-          <ThreeCanvas />
+            <ThreeCanvas scrollProgress={scrollTop} />
+            <Nav/>
+            <Hero />
+            <Projects/>
+            <About/>
+            <Services/>
+            <Services3d/>
+            <Contact/>
+             
         </main>
       </LocomotiveScrollProvider>
       

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { forwardRef, useEffect, useRef } from 'react'
 import GSAP from 'gsap'
+
 function Hero() {
   const title = useRef(null)
   const des = useRef(null)
@@ -14,7 +15,7 @@ function Hero() {
     })
   },[])
   return (
-    <div className="hero-container" id="hero-container" data-scroll-section>
+    <div className="hero-container" id="hero-container" data-scroll-section >
         <div className="right">
           <div className="hey">
             <div className="title hi">SkepTech</div>

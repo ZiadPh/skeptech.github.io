@@ -1,4 +1,4 @@
-import {useRef, useEffect} from 'react'
+import {useRef, useEffect, useState} from 'react'
 import { Canvas, extend, useLoader, useFrame } from '@react-three/fiber'
 import { OrbitControls, shaderMaterial, ScrollControls, useScroll } from '@react-three/drei';
 import * as THREE from 'three'
@@ -74,7 +74,9 @@ const material = new THREE.ShaderMaterial( {
 
 
 //Model loading Function
-function Model() {
+function Model(props) {
+
+ const [data, setData] = useState(props.message);
 
   const gltf = useLoader(GLTFLoader, '/dna-03.glb')
  
@@ -87,25 +89,26 @@ function Model() {
   material.blending = THREE.AdditiveBlending;
   const mesh = new THREE.Points(gltf.scene.children[0].geometry, material)
   const wave = useRef()
-  const data = useScroll()
+ 
 
 
   useFrame((state, delta) => {
 
     // Will be 0 when the scrollbar is at the starting position,
     // then increase to 1 until 1 / 3 of the scroll distance is reached
-    const a = data.range(0, 1)
+    const a = props.message
+   console.log(a)
     wave.current.rotation.x = THREE.MathUtils.damp(wave.current.rotation.x, (-Math.PI / 1.45) * a, 4, delta)
     wave.current.position.x = THREE.MathUtils.damp(wave.current.position.x, (-Math.PI / 1.45) * a, 4, delta)
     wave.current.position.z = THREE.MathUtils.damp(wave.current.position.z, (-Math.PI / 1.45) * 0.5 * a, 4, delta)
-  })
+  },[])
 
 
 
 
  
   return (<>
-    <primitive ref={wave} object={mesh} position={[0,0,0]} rotation={[0,-0.57,0]} /> 
+    <primitive ref={wave} object={mesh}  /> 
     </>)
 }
 
@@ -113,10 +116,14 @@ function Model() {
 
 
 //Render Function
-function ThreeCanvas() {
+function ThreeCanvas(props) {
 
-  
+  const [scrollProgress, setScrollProgress] = useState(props.scrollProgress);
+ const progress = props.scrollProgress
+
+
   return ( 
+    
     <div className='ThreeCanvas'>
       <Canvas
         camera={{
@@ -138,10 +145,7 @@ function ThreeCanvas() {
         {/* <Vignette eskil={false} offset={0.6} darkness={0.9} /> */}
       </EffectComposer>
         <color args={['#181b1f']} attach={'background'}/>              
-         <ScrollControls pages={5} damping={0.1}>
-          <Model />
-         </ScrollControls>
-         
+          <Model message={progress}/>
         {/* <OrbitControls/> */}
       </Canvas>
     </div>

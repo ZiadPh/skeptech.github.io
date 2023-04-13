@@ -17,7 +17,7 @@ function projects() {
             y: 0,
             duration: 1
           })
-          console.log(entry.target)
+          // console.log(entry.target)
         })
         
       },{
