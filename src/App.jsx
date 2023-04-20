@@ -8,10 +8,8 @@ import About from './components/about/about'
 import Services from './components/services/services'
 import Contact from './components/contact-us/contactus'
 import {useEffect, useRef, useState} from 'react'
-import Services3d from './components/services3d/services3d'
 import ThreeCanvas from './components/canvas3d/Canvas3d'
-import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
-import { extend } from '@react-three/fiber'
+
 
 
 
@@ -20,31 +18,29 @@ import { extend } from '@react-three/fiber'
 //Render Function
 function App() {
 
-  //Scroll Progress Tracking
+
+
+  //Scroll Function
   const [scrollTop, setScrollTop] = useState(0);
+  
   const onScroll = () => {
-    // This will calculate how many pixels the page is vertically
     const winScroll = document.documentElement.scrollTop;
-    // This is responsible for subtracticing the total height of the page - where the users page is scrolled to
     const height =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
-
-    // This will calculate the final total of the percentage of how much the user has scrolled.
+  
     const scrolled = (winScroll / height);
-
-    setScrollTop(scrolled);
+  
+    setScrollTop(scrolled); // Update scrollTop first
   };
-
-
   
   useEffect(() => {
-    // Fires when the document view has been scrolled
     window.addEventListener("scroll", onScroll);
-
-    // 
+  
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  
+
 
 
   //LocomotiveScroll
@@ -65,7 +61,7 @@ function App() {
       </div>: */}
         
         <>
-        <LocomotiveScrollProvider
+        {/* <LocomotiveScrollProvider
 
         
         options={
@@ -82,7 +78,10 @@ function App() {
           ]
         }
        
-      >
+      > */}
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com"></link>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"></link>
         <main data-scroll-container ref={containerRef}>
             <ThreeCanvas scrollProgress={scrollTop} />
             <Nav/>
@@ -90,11 +89,10 @@ function App() {
             <Projects/>
             <About/>
             <Services/>
-            <Services3d/>
             <Contact/>
              
         </main>
-      </LocomotiveScrollProvider>
+      {/* </LocomotiveScrollProvider> */}
       
       <div className="music" >
           <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">

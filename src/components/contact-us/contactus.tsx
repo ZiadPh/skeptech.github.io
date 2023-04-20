@@ -18,7 +18,23 @@ function ContactUs() {
     <div className="contact-wrapper" data-scroll-section>
         <div className="contact-container">
             <div ref={title} className="contact-title">
-                Contact:
+                Have a <br/>Project <br/>Idea? 
+            </div>
+            <div className="email-us">
+              
+              <div className="email-text">
+                 EMAIL US
+              </div> 
+              <div className="email">
+                INQUIRE@SKEPTECH.CO.UK
+              </div>
+            </div>
+            <div className="footer">
+              <div className="musicc">ea</div>
+              <div className="contact">
+                CONTACT
+              </div>
+              <div className="instagram">Instagram</div>
             </div>
         </div>
     </div>

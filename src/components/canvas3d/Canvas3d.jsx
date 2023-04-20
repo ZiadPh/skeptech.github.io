@@ -1,11 +1,12 @@
 import {useRef, useEffect, useState} from 'react'
 import { Canvas, extend, useLoader, useFrame } from '@react-three/fiber'
-import { OrbitControls, shaderMaterial, ScrollControls, useScroll } from '@react-three/drei';
+import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three'
 import { EffectComposer, ChromaticAberration, Bloom, Noise, Vignette, } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
+import React from "react";
+import { useGLTF } from "@react-three/drei";
 const number = 662742;
 
 const randoms = new Float32Array (number /3);
@@ -36,7 +37,7 @@ const material = new THREE.ShaderMaterial( {
       vUv = uv;
       colorR = cRandoms;
       vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      gl_PointSize = (70. * randoms + 10.0) * (1. / - mvPosition.z) ;
+      gl_PointSize = (70. * randoms + 15.0) * (1. / - mvPosition.z) ;
       gl_Position = projectionMatrix * mvPosition;
   }`,
 
@@ -77,9 +78,10 @@ const material = new THREE.ShaderMaterial( {
 function Model(props) {
 
  const [data, setData] = useState(props.message);
-
-  const gltf = useLoader(GLTFLoader, '/dna-03.glb')
  
+  const gltf = useLoader(GLTFLoader, '/dna-03.glb')
+  const { nodes, materials } = useGLTF("/dna-03.glb");
+
   gltf.materials.map = material
   gltf.scene.children[0].geometry.setAttribute('randoms', new THREE.BufferAttribute(randoms,1))
   gltf.scene.children[0].geometry.setAttribute('cRandoms', new THREE.BufferAttribute(colorRandoms,1))
@@ -89,30 +91,36 @@ function Model(props) {
   material.blending = THREE.AdditiveBlending;
   const mesh = new THREE.Points(gltf.scene.children[0].geometry, material)
   const wave = useRef()
+  
  
+  const a = props.message
+  
 
 
-  useFrame((state, delta) => {
+  useFrame(( state , delta) => {
 
     // Will be 0 when the scrollbar is at the starting position,
     // then increase to 1 until 1 / 3 of the scroll distance is reached
-    const a = props.message
-   console.log(a)
-    wave.current.rotation.x = THREE.MathUtils.damp(wave.current.rotation.x, (-Math.PI / 1.45) * a, 4, delta)
+    wave.current.rotation.x  =  THREE.MathUtils.damp(wave.current.rotation.x, (-Math.PI / 1.9) * a, 4, delta)
+    wave.current.rotation.z  =  THREE.MathUtils.damp(wave.current.rotation.z, (-Math.PI / 2.8) * a, 4, delta)
     wave.current.position.x = THREE.MathUtils.damp(wave.current.position.x, (-Math.PI / 1.45) * a, 4, delta)
     wave.current.position.z = THREE.MathUtils.damp(wave.current.position.z, (-Math.PI / 1.45) * 0.5 * a, 4, delta)
-  },[])
+  },[a])
+  
 
 
+  return (
 
-
- 
-  return (<>
-    <primitive ref={wave} object={mesh}  /> 
-    </>)
+    <group {...props} dispose={null}>
+      <points  ref={wave}  position={[0,0,0]} rotation={[0,-0.57,0]} 
+        geometry={nodes.wave1.geometry}
+        material={material}
+      />
+    </group>
+  );
 }
 
-
+useGLTF.preload("/dna-03.glb");
 
 
 //Render Function
@@ -137,7 +145,7 @@ function ThreeCanvas(props) {
       > 
       <EffectComposer>
         <Bloom luminanceThreshold={0.6} luminanceSmoothing={0.2} height={900} />
-        <Noise opacity={0.06} />
+        {/* <Noise opacity={0.06} /> */}
         <ChromaticAberration
     blendFunction={BlendFunction.NORMAL} // blend mode
     offset={[0.0025, 0.001]} // color offset
