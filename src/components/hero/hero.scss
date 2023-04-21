@@ -1,0 +1,52 @@
+@import '../../styles/variables.scss';
+.hero-container{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    height: 100vh;
+}
+.img-container{
+    height: 40vw;
+    position: absolute;
+    top: 0;
+    left: 24vw;
+    width: 40vw;
+    object-fit: cover;
+
+}
+.right{
+    margin-top: 30vh;
+    z-index: 1;
+    margin-left: 10vw;
+}
+.case{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}
+// .music{
+//     position: fixed;
+//      bottom: 1rem;
+//      left: 2rem;
+// }
+.title{
+    color: $primary-color;
+    font-size: clamp(72px, 12vw, 300px);
+    margin-bottom: 2rem;
+    opacity: 0;
+    text-transform: uppercase;
+    transform: translateY(100px);
+    font-weight: bold;
+}
+
+.quote{
+    font-size: clamp(12px, 4vw, 40px);
+    opacity: 0;
+    transform: translateY(100px);
+    letter-spacing: 7px;
+}
+.hey{
+    overflow: hidden;
+    padding-bottom: 5px;
+}
