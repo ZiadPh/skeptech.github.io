@@ -1,12 +1,12 @@
 {
   "name": "skeptech-v3",
-  "homepage": "https://ziadph.github.io/skeptech.github.io/",
+  "homepage": "https://ziadph.github.io/skeptech.github.io",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d build",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
