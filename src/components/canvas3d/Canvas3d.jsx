@@ -80,7 +80,7 @@ function Model(props) {
  const [data, setData] = useState(props.message);
  
   const gltf = useLoader(GLTFLoader, '/dna-03.glb')
-  const { nodes, materials } = useGLTF("/dna-03.glb");
+  const { nodes } = useGLTF("/dna-03.glb");
 
   gltf.materials.map = material
   gltf.scene.children[0].geometry.setAttribute('randoms', new THREE.BufferAttribute(randoms,1))
