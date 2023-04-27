@@ -7,6 +7,7 @@ import { BlendFunction } from 'postprocessing'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import DNA from '/src/assets/dna-03.glb' 
 const number = 662742;
 
 const randoms = new Float32Array (number /3);
@@ -79,8 +80,8 @@ function Model(props) {
 
  const [data, setData] = useState(props.message);
  
-  const gltf = useLoader(GLTFLoader, '/dna-03.glb')
-  const { nodes } = useGLTF("/dna-03.glb");
+  const gltf = useLoader(GLTFLoader, DNA)
+  const { nodes } = useGLTF(DNA);
 
   gltf.materials.map = material
   gltf.scene.children[0].geometry.setAttribute('randoms', new THREE.BufferAttribute(randoms,1))

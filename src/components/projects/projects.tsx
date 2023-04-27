@@ -1,6 +1,10 @@
 import React from 'react'
 import GSAP from 'gsap'
 import { useRef, useEffect} from 'react'
+import DevMo from '/src/assets/devMo.png'
+import GallerSkep from '/src/assets/GallerySkep.png'
+import laptop from '/src/assets/laptop.png'
+import CK from '/src/assets/CK.png'
 function projects() {
   const cards = document.querySelectorAll('.project-name')
   const refff = useRef(null)
@@ -34,25 +38,25 @@ function projects() {
     {
   
       name: 'DevMohamed Portofolio',
-      url: 'src/assets/devMo.png',
+      url: DevMo,
       dTitle: 'DEV / UX / 3D',
       description: 'This was one of the first projects in skeptech that we were proud to execute using 3D design and implementation through blender and three.js to create this immersive CV experience using visual storytelling'
     },
     {
       name: 'Circle K: Dedicated App',
-      url: 'src/assets/CK.png',
+      url: CK,
       dTitle: 'UX / UI',
       description: 'Circle K is a dedicated mobile application for coffee ordering. The projects primary goal is to provide a seamless and user-friendly experience for customers to order their coffee quickly and efficiently. The application includes features such as personalized drink customization, multiple payment options, and the ability to save favorite orders for future use. The design also incorporates a loyalty points system, allowing customers to earn rewards and discounts for frequent orders'
     },
     {
       name: 'Mission bicycle: Website',
-      url: 'src/assets/laptop.png',
+      url: laptop,
       dTitle: 'WEB / UX',
       description: 'Mission Bicycles is a custom bicycle store that provides unique and personalized bikes to customers. The company’s website offers a seamless and user-friendly experience, allowing customers to easily browse through various bike models and customize their preferred options. Additionally, the website has a built-in system that allows users to preview their customized bike before placing an order.'
     },
     {
       name: 'SkepTech Gallery',
-      url: 'src/assets/GallerySkep.png',
+      url: GallerSkep,
       dTitle: 'WEB / UX',
       description: 'The website design project for the online non-commercial photography gallery aimed to create a visually engaging and user-friendly interface to showcase the collection of photographs. The design was meant to highlight the uniqueness and individuality of each photographer while also providing an easy-to-use platform for browsing and exploring the gallery.'
     }
