@@ -27,8 +27,7 @@
             font-weight: 500;
             opacity: 0;
             -webkit-text-stroke: 2px rgb(218, 218, 218);
-            color:rgba($color: $primary-color, $alpha: .02);
-            text-stroke: 4px $primary-color;
+            color:rgba($color: $primary-color, $alpha: .08);
     
         }
    
@@ -71,8 +70,7 @@
             border-top: 1px solid #fff;
             .musicc{
                 width: 24px;
-                opacity: 0;
-             
+                opacity: 1;
             }
             .instagram{
                 text-transform: uppercase;
@@ -80,3 +78,30 @@
         }
     }
 }
+
+@media (min-width: 320px) and (max-width: 680px) {
+    /* 
+      Device = Most of the Smartphones Mobiles (Portrait)
+      Screen = 320px to 479px
+    */
+
+    .contact-wrapper{
+
+        height: 100vh;
+        .contact-container{
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6rem;
+            gap: 4rem;
+            .contact-title{
+                align-self: flex-start;
+                font-size:clamp(30px, 16vw, 72vw);
+                -webkit-text-stroke: 1px rgb(218, 218, 218);
+            }
+            .email-us{
+                align-self: flex-end;
+            }
+        }
+    }  
+  }

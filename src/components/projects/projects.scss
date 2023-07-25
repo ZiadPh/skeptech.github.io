@@ -113,3 +113,23 @@
  opacity: 0;
  transform: translateY(40px);
 }
+
+
+@media (min-width: 320px) and (max-width: 680px) {
+    /* 
+      Device = Most of the Smartphones Mobiles (Portrait)
+      Screen = 320px to 479px
+    */
+.projects-wrapper{
+    margin-left: 8vw;
+    .project-container{
+        .projects-title{
+            margin-left: 0;
+        }
+
+    }
+}
+.projects-description{
+    width: 50vw;
+}
+}

@@ -5,7 +5,7 @@
     justify-content: flex-start;
     .about-container{
         width: 100%;
-        margin-left: 100px;
+        margin-left: 8vw;
         margin-bottom: 35rem;
         margin-top: 25rem;
         .about-title{
@@ -16,8 +16,7 @@
             font-weight: 500;
             font-size: clamp(30px, 12vw, 30vw);
             -webkit-text-stroke: 2px rgb(218, 218, 218);
-            color:rgba($color: $primary-color, $alpha: .02);
-            text-stroke: 4px rgba($color: $primary-color, $alpha: .5);
+            color:rgba($color: $primary-color, $alpha: .08);
             margin-bottom: 4rem;
         }
         .about-description{
@@ -25,9 +24,48 @@
             margin-top: 2rem;
             line-height: 35px;
             letter-spacing: .5px;
-            margin-left: 1rem;
-            width: 56%;
+            margin-left: 0rem;
+            width: 70%;
 
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 680px) {
+    /* 
+      Device = Most of the Smartphones Mobiles (Portrait)
+      Screen = 320px to 479px
+    */
+    .about-wrapper{
+        height:100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .about-container{
+            width: 100%;
+            margin-left: 8vw;
+            margin-bottom: 35rem;
+            margin-top: 25rem;
+            .about-title{
+        
+                letter-spacing:3px;
+                letter-spacing:3px;
+                font-family: 'IBM Plex Mono', monospace;
+                font-weight: 500;
+                font-size: clamp(30px, 12vw, 30vw);
+                -webkit-text-stroke: 1px rgb(218, 218, 218);
+                color:rgba($color: $primary-color, $alpha: .08);
+                margin-bottom: 4rem;
+            }
+            .about-description{
+                font-size:clamp(12px, 1.5vw, 7vw);
+                margin-top: 2rem;
+                line-height: 35px;
+                letter-spacing: .5px;
+                margin-left: 0rem;
+                width: 70%;
+    
+            }
         }
     }
 }
