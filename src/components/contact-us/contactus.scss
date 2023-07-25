@@ -21,7 +21,7 @@
         width: 97%;
 
         .contact-title{
-            font-size:clamp(30px, 10vw, 20vw);
+            font-size:clamp(30px, 10vw, 240px);
             letter-spacing:3px;
             font-family: 'IBM Plex Mono', monospace;
             font-weight: 500;
@@ -47,7 +47,7 @@
             text-align: right;
             flex-direction: column;
             gap: 1rem;
-            font-size: clamp(12px, 1.2vw, 5vw);
+            font-size: clamp(16px, 1.2vw, 5vw);
             font-weight: 300;
             letter-spacing: 1px;
             .email{
@@ -103,6 +103,11 @@
             }
             .email-us{
                 align-self: flex-end;
+            }
+            .footer{
+                .musicc{
+                    display: none;
+                }
             }
         }
     }  
