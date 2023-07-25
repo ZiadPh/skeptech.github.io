@@ -1,8 +1,8 @@
 import React from 'react'
 
-function About() {
+const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div className="about-wrapper" data-scroll-section>
+    <div ref={ref} className="about-wrapper" data-scroll-section>
         <div className="about-container">
             <div className="about-title">
                 What is Skeptech?
@@ -14,6 +14,6 @@ function About() {
         </div>
     </div>
   )
-}
+})
 
 export default About

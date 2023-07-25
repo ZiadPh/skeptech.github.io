@@ -1,15 +1,19 @@
 import React from 'react'
 import { useClock } from 'react-use-clock'
 
+interface NavProps {
+  scrollToSection: (target: string) => void;
+}
 
-function Nav() {
+
+const Nav: React.FC<NavProps> = ({ scrollToSection }) => {
 
   const clock = useClock()
 
 
   return (
     <div className='nav'>
-        <div className="stack">
+        <div className="stack"  onClick={() => scrollToSection('section4')}>
           <span className='index1'>SKEPTECH</span>
           <span className='index2'>SKEPTECH</span>
           <span className='index3'>SKEPTECH</span>
@@ -23,9 +27,9 @@ function Nav() {
           
           -&nbsp;&nbsp;LIVERPOOL, UK (BST)   <span className='lowlight'>©2022</span></div>
         <ul className="pages">
-            <li className='projects-nav'>PROJECTS</li>
-            <li className='about-nav'>ABOUT US</li>
-            <li className='contact-nav'>CONTACT</li>
+            <li><button className='projects-nav' onClick={() => scrollToSection('section1')}>PROJECTS</button></li>
+            <li><button className='about-nav' onClick={() => scrollToSection('section2')}>ABOUT US</button></li>
+            <li><button className='contact-nav' onClick={() => scrollToSection('section3')}>CONTACT</button></li>
         </ul>
     </div>
   )

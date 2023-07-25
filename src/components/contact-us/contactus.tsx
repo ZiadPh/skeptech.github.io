@@ -2,7 +2,7 @@ import React from 'react'
 import GSAP from 'gsap'
 import { useEffect, useRef} from 'react'
 
-function ContactUs() {
+const ContactUs = React.forwardRef<HTMLDivElement>((props, ref) => {
 
   const title = useRef(null)
   useEffect(()=>{
@@ -15,7 +15,7 @@ function ContactUs() {
     })
   },[])
   return (
-    <div className="contact-wrapper" data-scroll-section>
+    <div ref={ref} className="contact-wrapper" data-scroll-section>
         <div className="contact-container">
             <div ref={title} className="contact-title">
                 Have a <br/>Project <br/>Idea? 
@@ -25,9 +25,9 @@ function ContactUs() {
               <div className="email-text">
                  EMAIL US
               </div> 
-              <div className="email">
+              <a className="email" target="_blank" href='mailto:INQUIRE@SKEPTECH.CO.UK'>
                 INQUIRE@SKEPTECH.CO.UK
-              </div>
+              </a>
             </div>
             <div className="footer">
               <div className="musicc">
@@ -42,13 +42,13 @@ function ContactUs() {
       </div>
               </div>
               <div className="contact">
-                CONTACT
+                MADE WITH LOVE AND COFFEE
               </div>
-              <div className="instagram">Instagram</div>
+              <a className="instagram" target="_blank" href="https://www.instagram.com/skep.tech/">Instagram</a>
             </div>
         </div>
     </div>
   )
-}
+})
 
 export default ContactUs

@@ -5,7 +5,9 @@ import DevMo from '/src/assets/devMo.png'
 import GallerSkep from '/src/assets/GallerySkep.png'
 import laptop from '/src/assets/laptop.png'
 import CK from '/src/assets/CK.png'
-function projects() {
+
+
+const projects = React.forwardRef<HTMLDivElement>((props, ref) => {
   const cards = document.querySelectorAll('.project-name')
   const refff = useRef(null)
   
@@ -66,7 +68,7 @@ function projects() {
     }
   ]
   return (
-    <div className="projects-wrapper" id="projects-container" data-scroll-section>
+    <div ref={ref} className="projects-wrapper" id="projects-container" data-scroll-section>
       <div className="project-container" >
         
         <div  className="projects-title"><span className='projects-number'>#00</span> Projects</div>
@@ -102,6 +104,6 @@ function projects() {
       </div>
     </div>
   )
-}
+})
 
 export default projects

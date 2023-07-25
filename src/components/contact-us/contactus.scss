@@ -52,6 +52,7 @@
             letter-spacing: 1px;
             .email{
                 color: $highlight-color;
+                @extend %link;
             }
         }
         .footer{
@@ -74,6 +75,7 @@
             }
             .instagram{
                 text-transform: uppercase;
+                @extend %link;
             }
         }
     }

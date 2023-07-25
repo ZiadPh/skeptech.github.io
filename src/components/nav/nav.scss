@@ -6,18 +6,35 @@
     justify-content:space-between;
     margin: 1vw 2vw;
 }
+.clock{
+  pointer-events: none;
+}
 
 .pages {
  display: flex;
- gap: 1rem;
+ gap: 2rem;
+  li{
+    button{
+      @extend %link;
+      color: #c6c2bb;
+      opacity: 0.5;
+      transition: ease-in-out 0.15s;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
 }
 .index1{
     --index: 0;
+    pointer-events: none;
 }
 .index2{
     --index: 1;
+    pointer-events: none;
 }.index3{
     --index: 2;
+    pointer-events: none;
 }
 .stack {
     --stacks: 3;
@@ -30,7 +47,9 @@
         }
     }
   }
-  
+  .stack{
+    cursor: pointer;
+  }
   .stack span {
     grid-row-start: 1;
     grid-column-start: 1;

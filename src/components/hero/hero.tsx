@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useRef } from 'react'
 import GSAP from 'gsap'
 
-function Hero() {
+const Hero = React.forwardRef<HTMLDivElement>((props, ref) => {
   const title = useRef(null)
   const des = useRef(null)
   const arr = [title.current, des.current]
@@ -15,7 +15,7 @@ function Hero() {
     })
   },[])
   return (
-    <div className="hero-container" id="hero-container" data-scroll-section >
+    <div ref={ref} className="hero-container" id="hero-container" data-scroll-section >
         <div className="right">
           <div className="hey">
             <div className="title hi">SkepTech</div>
@@ -28,6 +28,6 @@ function Hero() {
       
     </div>
   )
-}
+})
 
 export default Hero
