@@ -77,7 +77,7 @@ const projects = React.forwardRef<HTMLDivElement>((props, ref) => {
             <div className="project" key={index}>
               <ul>
                 <li>
-                  <a className='tdn' href={project.link}> 
+                  <a className='tdn' href={project.link} target='blank'> 
                     <span className="project-name">
                       <span className='project-number'>
                         #0{index+1}

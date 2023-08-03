@@ -7,6 +7,7 @@ import { BlendFunction } from 'postprocessing'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { Stats } from '@react-three/drei'
 import DNA from '/src/assets/dna-03.glb' 
 const number = 662742;
 
@@ -135,6 +136,7 @@ function ThreeCanvas(props) {
     
     <div className='ThreeCanvas'>
       <Canvas
+        frameloop="demand"
         camera={{
           fov: 75,
           aspect: 2,
@@ -145,7 +147,7 @@ function ThreeCanvas(props) {
         }}
       > 
       <EffectComposer>
-        <Bloom luminanceThreshold={0.6} luminanceSmoothing={0.2} height={900} />
+        <Bloom luminanceThreshold={1.0} luminanceSmoothing={0.4} height={900} />
         {/* <Noise opacity={0.06} /> */}
         <ChromaticAberration
     blendFunction={BlendFunction.NORMAL} // blend mode
@@ -156,6 +158,7 @@ function ThreeCanvas(props) {
         <color args={['#181b1f']} attach={'background'}/>              
           <Model message={progress}/>
         {/* <OrbitControls/> */}
+        {/* <Stats /> */}
       </Canvas>
     </div>
   );
