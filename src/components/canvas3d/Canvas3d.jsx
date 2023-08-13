@@ -136,6 +136,7 @@ function ThreeCanvas(props) {
     
     <div className='ThreeCanvas'>
       <Canvas
+        dpr={1}
         frameloop="demand"
         camera={{
           fov: 75,
