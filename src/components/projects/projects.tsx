@@ -60,11 +60,11 @@ const projects = React.forwardRef<HTMLDivElement>((props, ref) => {
       description: 'Mission Bicycles is a custom bicycle store that provides unique and personalized bikes to customers. The company’s website offers a seamless and user-friendly experience, allowing customers to easily browse through various bike models and customize their preferred options. Additionally, the website has a built-in system that allows users to preview their customized bike before placing an order.'
     },
     {
-      name: 'SkepTech Gallery',
+      name: 'Pixel10 Studio',
       url: GallerSkep,
-      link: 'https://galleryskeptech.netlify.app/',
-      dTitle: 'WEB / UX',
-      description: 'The website design project for the online non-commercial photography gallery aimed to create a visually engaging and user-friendly interface to showcase the collection of photographs. The design was meant to highlight the uniqueness and individuality of each photographer while also providing an easy-to-use platform for browsing and exploring the gallery.'
+      link: 'https://www.behance.net/gallery/176988473/Pixel10-Studio-Website-Design',
+      dTitle: 'DEV / UX',
+      description: 'Pixel10 Studio website is considered our very first commercial project which we take pride in participating to help a fellow creative studio to curate and showcase their work on the internet.'
     }
   ]
   return (
