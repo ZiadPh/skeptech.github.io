@@ -79,7 +79,7 @@ const material = new THREE.ShaderMaterial( {
 //Model loading Function
 function Model(props) {
 
- const [data, setData] = useState(props.message);
+//  const [data, setData] = useState(props.message);
  
   const gltf = useLoader(GLTFLoader, DNA)
   const { nodes } = useGLTF(DNA);
@@ -97,6 +97,7 @@ function Model(props) {
  
   const a = props.message
   
+  const [clock] = React.useState(new THREE.Clock());
 
 
   useFrame(( state , delta) => {
@@ -107,6 +108,15 @@ function Model(props) {
     wave.current.rotation.z  =  THREE.MathUtils.damp(wave.current.rotation.z, (-Math.PI / 2.8) * a, 4, delta)
     wave.current.position.x = THREE.MathUtils.damp(wave.current.position.x, (-Math.PI / 1.45) * a, 4, delta)
     wave.current.position.z = THREE.MathUtils.damp(wave.current.position.z, (-Math.PI / 1.45) * 0.5 * a, 4, delta)
+
+
+    state.ready = false;
+    const timeUntilNextFrame = (1000 / 24) - clock.getDelta();
+
+    setTimeout(() => {
+      state.ready = true;
+      state.invalidate();
+    }, Math.max(0, timeUntilNextFrame));
   },[a])
   
 
@@ -159,7 +169,7 @@ function ThreeCanvas(props) {
         <color args={['#181b1f']} attach={'background'}/>              
           <Model message={progress}/>
         {/* <OrbitControls/> */}
-        {/* <Stats /> */}
+        <Stats /> 
       </Canvas>
     </div>
   );
