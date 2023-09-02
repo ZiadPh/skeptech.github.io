@@ -118,7 +118,7 @@ function Model(props) {
     }, Math.max(0, timeUntilNextFrame));
 
 
-  },[a])
+  },[])
   
 
 
@@ -158,15 +158,7 @@ function ThreeCanvas(props) {
           rotation: [0,0,0]
         }}
       > 
-      <EffectComposer>
-        <Bloom luminanceThreshold={1.0} luminanceSmoothing={0.4} height={900} />
-        {/* <Noise opacity={0.06} /> */}
-        <ChromaticAberration
-    blendFunction={BlendFunction.NORMAL} // blend mode
-    offset={[0.0025, 0.001]} // color offset
-  />
-        {/* <Vignette eskil={false} offset={0.6} darkness={0.9} /> */}
-      </EffectComposer>
+
         <color args={['#181b1f']} attach={'background'}/>              
           <Model message={progress}/>
         {/* <OrbitControls/> */}
